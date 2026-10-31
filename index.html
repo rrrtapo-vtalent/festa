@@ -51,20 +51,20 @@
 
   function payPanel(p,q){
     if (p.pagato) return `<li class="panel"><h3>Grazie ${esc(p.nome)}, sei a posto.</h3><p class="note">${CHI} ha ricevuto i tuoi ${eur(q)}. Cin cin.</p></li>`;
-    const amt = q.toFixed(2).replace('.',',');
+    const link = `https://revolut.me/${REVTAG}?currency=EUR&amount=${Math.round(q*100)}&note=${encodeURIComponent('Alcol festa - ' + p.nome)}`;
     return `<li class="panel"><h3>${esc(p.nome)}, tocca a te</h3>
       <div class="amount">${eur(q)}</div>
       <div class="btns">
-        <a class="btn pay" href="https://revolut.me/${REVTAG}" target="_blank" rel="noopener">${apple} Paga ora</a>
-        <button class="btn small" data-copy="${amt}">Copia l'importo (${amt})</button>
+        <a class="btn pay" href="${esc(link)}" target="_blank" rel="noopener">${apple} Paga ora</a>
       </div>
       <ul class="howto">
-        <li><b>Importo</b><span>scrivi ${amt} €.</span></li>
-        <li><b>iPhone</b><span>scegli Apple Pay.</span></li>
+        <li><b>iPhone</b><span>tocca Apple Pay e conferma.</span></li>
         <li><b>Android</b><span>scegli Carta e inserisci i dati.</span></li>
-        <li><b>Causale</b><span>scrivi il tuo nome.</span></li>
       </ul>
-      <p class="note">Non serve avere Revolut. Quando arrivano i soldi, ${CHI} ti segna come pagato.</p>
+      <p class="note">Importo e causale sono già compilati. Non serve avere Revolut.</p>
+      <p class="note"><b>Ti si apre l'app Revolut</b> ma vuoi pagare con Apple Pay? Copia il link qui sotto e incollalo nella barra degli indirizzi di Safari.</p>
+      <button class="btn small" data-copy="${esc(link)}">Copia il link di pagamento</button>
+      <p class="note">Quando arrivano i soldi, ${CHI} ti segna come pagato.</p>
       <p class="status" id="copy-status" role="status"></p></li>`;
   }
 
@@ -72,8 +72,8 @@
     const cp = e.target.closest('[data-copy]');
     if (cp){
       const out = document.getElementById('copy-status');
-      try { await navigator.clipboard.writeText(cp.dataset.copy); out.textContent = 'Importo copiato.'; }
-      catch { out.textContent = 'Scrivi ' + cp.dataset.copy + ' €.'; }
+      try { await navigator.clipboard.writeText(cp.dataset.copy); out.textContent = 'Link copiato: incollalo in Safari.'; }
+      catch { out.textContent = cp.dataset.copy; }
       return;
     }
     const row = e.target.closest('.row');
