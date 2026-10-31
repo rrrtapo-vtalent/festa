@@ -55,7 +55,7 @@
     return `<li class="panel"><h3>${esc(p.nome)}, tocca a te</h3>
       <div class="amount">${eur(q)}</div>
       <div class="btns">
-        <a class="btn pay" href="${esc(link)}" target="_blank" rel="noopener">${apple} Paga ora</a>
+        <a class="btn pay" href="paga.html?c=${Math.round(q*100)}&amp;n=${encodeURIComponent(p.nome)}">${apple} Paga ora</a>
       </div>
       <ul class="howto">
         <li><b>iPhone</b><span>tocca Apple Pay e conferma.</span></li>

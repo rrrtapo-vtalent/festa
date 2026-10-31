@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ti porto al pagamento…</title>
+<meta name="theme-color" content="#2b0d1e">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Figtree:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="style.css?v=1">
+<style>body{margin:0;min-height:100vh;display:grid;place-content:center;text-align:center}main{gap:14px}</style>
+</head>
+<body>
+<main>
+  <h1 style="font-size:2.2rem">Ti porto al pagamento…</h1>
+  <p class="lede" style="margin:0 auto">Si apre Revolut: tocca Apple Pay e conferma.</p>
+  <p class="note" id="fallback" hidden><a id="go" class="btn pay" href="#" style="margin-top:8px">Non si apre? Tocca qui</a></p>
+</main>
+<script>
+(function(){
+  var p = new URLSearchParams(location.search);
+  var nome = (p.get('n') || '').slice(0, 60);
+  var cents = Math.max(100, Math.min(10000, parseInt(p.get('c'), 10) || 1000));
+  var url = 'https://revolut.me/rrrtapo?currency=EUR&amount=' + cents + '&note=' + encodeURIComponent('Alcol festa' + (nome ? ' - ' + nome : ''));
+  document.getElementById('go').href = url;
+  setTimeout(function(){ location.replace(url); }, 400);
+  setTimeout(function(){ document.getElementById('fallback').hidden = false; }, 2500);
+})();
+</script>
+</body>
+</html>
