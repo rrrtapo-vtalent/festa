@@ -85,3 +85,5 @@ footer{text-align:center;font-size:.8rem;color:var(--muted)}
 @media (prefers-reduced-motion: reduce){.glass .bubble{animation:none;display:none}.glass .beer,.row{transition:none}}
 .btn.paypal{background:#ffc439;color:#111;border-color:#ffc439}
 .howto b{min-width:72px}
+.btn.revolut{background:var(--wine);color:var(--foam);border-color:var(--wine)}
+.howto li{display:grid;grid-template-columns:auto 1fr;gap:8px}.howto b{min-width:0;white-space:nowrap}

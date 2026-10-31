@@ -8,7 +8,7 @@
 <meta property="og:description" content="Alcol della festa: trova il tuo nome e paga in due tocchi.">
 <meta name="theme-color" content="#2b0d1e">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Figtree:wght@400;600;800&display=swap">
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=3">
 <style>html{-webkit-text-size-adjust:100%}body{margin:0;min-height:100vh;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 </head>
 <body>
@@ -55,16 +55,15 @@
     return `<li class="panel"><h3>${esc(p.nome)}, tocca a te</h3>
       <div class="amount">${eur(q)}</div>
       <div class="btns">
-        <a class="btn pay" href="paga.html?c=${Math.round(q*100)}&amp;n=${encodeURIComponent(p.nome)}">${apple} Paga con Revolut</a>
-        <a class="btn paypal" href="https://www.paypal.me/mattiaporta130/${num(q)}EUR" target="_blank" rel="noopener">Paga con PayPal</a>
+        <a class="btn pay" href="paga.html?c=${Math.round(q*100)}&amp;n=${encodeURIComponent(p.nome)}">${apple} Apple Pay o carta</a>
+        <a class="btn revolut" href="${esc(link)}" target="_blank" rel="noopener">Ho Revolut</a>
+        <a class="btn paypal" href="https://www.paypal.me/mattiaporta130/${num(q)}EUR" target="_blank" rel="noopener">Ho PayPal</a>
       </div>
       <ul class="howto">
-        <li><b>Revolut</b><span>senza l'app: Apple Pay o carta. Con l'app: paghi da lì; se sei a zero, prima Aggiungi denaro con Apple Pay.</span></li>
-        <li><b>PayPal</b><span>con il conto PayPal o con la carta. Nella nota scrivi il tuo nome.</span></li>
+        <li><b>Apple Pay o carta</b><span>non serve nessun conto. iPhone: Apple Pay. Android: inserisci la carta.</span></li>
+        <li><b>Revolut</b><span>paghi dall'app, importo già messo.</span></li>
+        <li><b>PayPal</b><span>nella nota scrivi il tuo nome.</span></li>
       </ul>
-      <p class="note">Su Revolut importo e causale sono già compilati.</p>
-      <p class="note"><b>Ti si apre l'app Revolut</b> ma vuoi pagare con Apple Pay? Copia il link qui sotto e incollalo nella barra degli indirizzi di Safari.</p>
-      <button class="btn small" data-copy="${esc(link)}">Copia il link di pagamento</button>
       <p class="note">Quando arrivano i soldi, ${CHI} ti segna come pagato.</p>
       <p class="status" id="copy-status" role="status"></p></li>`;
   }
