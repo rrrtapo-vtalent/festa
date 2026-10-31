@@ -55,12 +55,11 @@
     return `<li class="panel"><h3>${esc(p.nome)}, tocca a te</h3>
       <div class="amount">${eur(q)}</div>
       <div class="btns">
-        <a class="btn pay" href="paga.html?c=${Math.round(q*100)}&amp;n=${encodeURIComponent(p.nome)}">Altro</a>
         <a class="btn revolut" href="${esc(link)}" target="_blank" rel="noopener">Ho Revolut</a>
         <a class="btn paypal" href="https://www.paypal.me/mattiaporta130/${num(q)}EUR" target="_blank" rel="noopener">Ho PayPal</a>
+        <a class="btn pay" href="paga.html?c=${Math.round(q*100)}&amp;n=${encodeURIComponent(p.nome)}">Altro</a>
       </div>
       <ul class="howto">
-        <li><b>Altro</b><span>niente Revolut né PayPal? Paghi con Apple Pay o con la carta.</span></li>
         <li><b>Revolut</b><span>paghi dall'app, importo già messo.</span></li>
         <li><b>PayPal</b><span>nella nota scrivi il tuo nome.</span></li>
       </ul>
