@@ -5,11 +5,11 @@
  "persone": [
   {
    "nome": "Greta Rosso",
-   "pagato": false
+   "pagato": true
   },
   {
    "nome": "Samuele Rosa",
-   "pagato": false
+   "pagato": true
   },
   {
    "nome": "Beatrice Sini",
