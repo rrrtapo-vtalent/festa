@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Manda i tuoi 10 € a Mr. Tapo</title>
+<meta property="og:title" content="Manda i tuoi 10 € a Mr. Tapo">
+<meta property="og:description" content="Alcol della festa: trova il tuo nome e paga in due tocchi.">
+<meta name="theme-color" content="#2b0d1e">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Figtree:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="style.css?v=1">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0;min-height:100vh;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+<main id="app"><p class="lede">Caricamento…</p></main>
+<script>
+(function(){
+  const CHI = 'Mr. Tapo', REVTAG = 'rrrtapo';
+  let S = null, open = null;
+  const app = document.getElementById('app');
+  const eur = v => v.toLocaleString('it-IT',{style:'currency',currency:'EUR',minimumFractionDigits:v%1?2:0});
+  const num = v => v.toLocaleString('it-IT',{minimumFractionDigits:v%1?2:0});
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const apple = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.8-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.3.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.8-1.1-2.8-4.2zM13.9 5.2c.7-.9 1.2-2 1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg>';
+
+  function render(){
+    if (!S) return;
+    const q = S.quota, n = S.persone.length, pagati = S.persone.filter(p=>p.pagato).length;
+    const rientrati = pagati * q, pct = S.totale ? Math.min(100, rientrati / S.totale * 100) : 0;
+    let h = `<header class="hero">
+        <div class="cap" aria-hidden="true">${num(q)}€<small>a testa</small></div>
+        <div class="text">
+          <p class="kicker">Cassa della festa</p>
+          <h1>Manda i tuoi <span class="cash">${num(q)} €</span> <span class="who">a ${CHI}</span></h1>
+        </div>
+        <p class="lede">Ha anticipato lui l'alcol. Trova il tuo nome, paga in due tocchi, poi si brinda.</p>
+      </header>
+      <section class="tally" aria-label="Quanto è rientrato">
+        <div class="glass" role="img" aria-label="Rientrato il ${Math.round(pct)}%"><div class="beer" style="height:${pct}%"></div><i class="bubble" style="left:8px"></i><i class="bubble"></i><i class="bubble"></i><i class="bubble"></i></div>
+        <div class="nums">
+          <div class="big">${eur(rientrati)} <span>su ${eur(S.totale)}</span></div>
+          <div class="facts"><span class="fact">${pagati} su ${n} hanno pagato</span><span class="fact">${n - pagati} mancano</span></div>
+        </div>
+      </section>
+      <section style="display:grid;gap:10px">
+        <div class="listhead"><h2>Chi c'era</h2><p>Tocca il tuo nome</p></div><ul>`;
+    h += S.persone.map((p,i)=>`<li><button class="row${p.pagato?' paid':''}" data-i="${i}" aria-expanded="${open===i}"><span class="dot"></span><span class="n">${esc(p.nome)}</span><span class="q">${eur(q)}</span><span class="pill">${p.pagato?'Pagato':'Da pagare'}</span></button></li>` + (open===i ? payPanel(p,q) : '')).join('');
+    h += `</ul></section><footer>Pagamenti con Revolut: non serve avere l'app.</footer>`;
+    app.innerHTML = h;
+  }
+
+  function payPanel(p,q){
+    if (p.pagato) return `<li class="panel"><h3>Grazie ${esc(p.nome)}, sei a posto.</h3><p class="note">${CHI} ha ricevuto i tuoi ${eur(q)}. Cin cin.</p></li>`;
+    const amt = q.toFixed(2).replace('.',',');
+    return `<li class="panel"><h3>${esc(p.nome)}, tocca a te</h3>
+      <div class="amount">${eur(q)}</div>
+      <div class="btns">
+        <a class="btn pay" href="https://revolut.me/${REVTAG}" target="_blank" rel="noopener">${apple} Paga ora</a>
+        <button class="btn small" data-copy="${amt}">Copia l'importo (${amt})</button>
+      </div>
+      <ul class="howto">
+        <li><b>Importo</b><span>scrivi ${amt} €.</span></li>
+        <li><b>iPhone</b><span>scegli Apple Pay.</span></li>
+        <li><b>Android</b><span>scegli Carta e inserisci i dati.</span></li>
+        <li><b>Causale</b><span>scrivi il tuo nome.</span></li>
+      </ul>
+      <p class="note">Non serve avere Revolut. Quando arrivano i soldi, ${CHI} ti segna come pagato.</p>
+      <p class="status" id="copy-status" role="status"></p></li>`;
+  }
+
+  app.addEventListener('click', async e => {
+    const cp = e.target.closest('[data-copy]');
+    if (cp){
+      const out = document.getElementById('copy-status');
+      try { await navigator.clipboard.writeText(cp.dataset.copy); out.textContent = 'Importo copiato.'; }
+      catch { out.textContent = 'Scrivi ' + cp.dataset.copy + ' €.'; }
+      return;
+    }
+    const row = e.target.closest('.row');
+    if (row){ const i = +row.dataset.i; open = open===i ? null : i; render(); }
+  });
+
+  async function load(){
+    try {
+      const r = await fetch('stato.json?t=' + Date.now(), {cache:'no-store'});
+      if (!r.ok) throw new Error(r.status);
+      S = await r.json(); render();
+    } catch (err) {
+      if (!S) app.innerHTML = '<p class="lede">Non riesco a caricare la lista. Ricarica la pagina.</p>';
+    }
+  }
+  load();
+  setInterval(() => { if (!document.hidden) load(); }, 60000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) load(); });
+})();
+</script>
+</body>
+</html>
