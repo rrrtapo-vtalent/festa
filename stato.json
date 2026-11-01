@@ -25,7 +25,7 @@
   },
   {
    "nome": "Batman",
-   "pagato": false
+   "pagato": true
   },
   {
    "nome": "Mix",
@@ -57,7 +57,7 @@
   },
   {
    "nome": "Massi Bossi",
-   "pagato": false
+   "pagato": true
   },
   {
    "nome": "Nic Ditrani",
