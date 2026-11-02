@@ -1,75 +1,75 @@
 {
- "revtag": "rrrtapo",
- "totale": 170,
- "quota": 10,
- "persone": [
-  {
-   "nome": "Greta Rosso",
-   "pagato": true
-  },
-  {
-   "nome": "Samuele Rosa",
-   "pagato": true
-  },
-  {
-   "nome": "Beatrice Sini",
-   "pagato": true
-  },
-  {
-   "nome": "Ruben Israeli",
-   "pagato": true
-  },
-  {
-   "nome": "Gioele Mele",
-   "pagato": false
-  },
-  {
-   "nome": "Batman",
-   "pagato": true
-  },
-  {
-   "nome": "Mix",
-   "pagato": false
-  },
-  {
-   "nome": "G.g.g.gboss",
-   "pagato": false
-  },
-  {
-   "nome": "Camilla amica Missa",
-   "pagato": true
-  },
-  {
-   "nome": "Roberta amica Missa",
-   "pagato": true
-  },
-  {
-   "nome": "Giustina amica Missa",
-   "pagato": true
-  },
-  {
-   "nome": "Cance",
-   "pagato": true
-  },
-  {
-   "nome": "Fidanzata Cance",
-   "pagato": true
-  },
-  {
-   "nome": "Massi Bossi",
-   "pagato": true
-  },
-  {
-   "nome": "Nic Ditrani",
-   "pagato": false
-  },
-  {
-   "nome": "Chiara Cavasassoni",
-   "pagato": false
-  },
-  {
-   "nome": "Luca Trass",
-   "pagato": false
-  }
- ]
+  "revtag": "rrrtapo",
+  "totale": 170,
+  "quota": 10,
+  "persone": [
+    {
+      "nome": "Greta Rosso",
+      "pagato": true
+    },
+    {
+      "nome": "Samuele Rosa",
+      "pagato": true
+    },
+    {
+      "nome": "Beatrice Sini",
+      "pagato": true
+    },
+    {
+      "nome": "Ruben Israeli",
+      "pagato": true
+    },
+    {
+      "nome": "Gioele Mele",
+      "pagato": true
+    },
+    {
+      "nome": "Batman",
+      "pagato": true
+    },
+    {
+      "nome": "Mix",
+      "pagato": false
+    },
+    {
+      "nome": "G.g.g.gboss",
+      "pagato": false
+    },
+    {
+      "nome": "Camilla amica Missa",
+      "pagato": true
+    },
+    {
+      "nome": "Roberta amica Missa",
+      "pagato": true
+    },
+    {
+      "nome": "Giustina amica Missa",
+      "pagato": true
+    },
+    {
+      "nome": "Cance",
+      "pagato": true
+    },
+    {
+      "nome": "Fidanzata Cance",
+      "pagato": true
+    },
+    {
+      "nome": "Massi Bossi",
+      "pagato": true
+    },
+    {
+      "nome": "Nic Ditrani",
+      "pagato": false
+    },
+    {
+      "nome": "Chiara Cavasassoni",
+      "pagato": false
+    },
+    {
+      "nome": "Luca Trass",
+      "pagato": false
+    }
+  ]
 }
